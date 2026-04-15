@@ -1,0 +1,23 @@
+name: Information
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v6
+      - name: "Show git information"
+        run: |
+          echo '### Workflow information' >> $GITHUB_STEP_SUMMARY
+          echo '| Property | Value |' >> $GITHUB_STEP_SUMMARY
+          echo '| ---: | :--- |' >> $GITHUB_STEP_SUMMARY
+          echo "|**Event name**| ${{ github.event_name }}|" >> $GITHUB_STEP_SUMMARY
+          echo "|**Base ref**| ${{ github.base_ref }}|" >> $GITHUB_STEP_SUMMARY
+          echo "|**Head ref**| ${{ github.head_ref }}|" >> $GITHUB_STEP_SUMMARY
+          echo "|**Ref**| ${{ github.ref }}|" >> $GITHUB_STEP_SUMMARY
+          echo "|**SHA**| ${{ github.sha }}|" >> $GITHUB_STEP_SUMMARY
+          echo "|**Parsed rev**| $(git rev-parse HEAD)|" >> $GITHUB_STEP_SUMMARY
